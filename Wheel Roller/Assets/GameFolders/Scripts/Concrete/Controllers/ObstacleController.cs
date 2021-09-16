@@ -16,17 +16,17 @@ public class ObstacleController : MonoBehaviour
 
     void Update()
     {
-        if (_period == 0f) // so the cycles will not be divided by 0
+        if (_period == 0f) 
         {
             return;
         }
 
-        float cycles = Time.time / _period; // continually growing over time
+        float cycles = Time.time / _period; 
 
-        const float tau = Mathf.PI * 2; // constant value of 6.283...
-        float rawSinWave = Mathf.Sin(cycles * tau); // Going from -1 to 1
+        const float tau = Mathf.PI * 2; 
+        float rawSinWave = Mathf.Sin(cycles * tau); 
 
-        _movementFactor = (rawSinWave + 1f) / 2f; // recalculated to go from 0 to 1 so it's cleaner
+        _movementFactor = (rawSinWave + 1f) / 2f; 
 
         Vector3 offset = _movementVector * _movementFactor;
         transform.position = _startingPosition + offset;
