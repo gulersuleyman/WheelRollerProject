@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _rotationSpeed = 5f;
-    [SerializeField] GameObject _wheel;
+    public GameObject _wheel;
 
     bool _running;
     float _currentPositionOfFirstTouch;

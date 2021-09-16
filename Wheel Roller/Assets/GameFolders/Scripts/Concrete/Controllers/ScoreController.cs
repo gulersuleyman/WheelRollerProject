@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreController : MonoBehaviour
 {
     int _score = 1;
+    Vector3 _wheelSize;
 
     [SerializeField] PlanetEnum type;
 
@@ -17,21 +18,26 @@ public class ScoreController : MonoBehaviour
             if(type == PlanetEnum.mars)
             {
                 GameManager.Instance.IncreaseScore(_score, 0, 0);
-                Debug.Log(GameManager.Instance._marsScore);
-                Destroy(this.gameObject);
+                WheelSizeAction(player);
             }
             else if(type == PlanetEnum.world)
             {
                 GameManager.Instance.IncreaseScore(0, _score, 0);
-                Debug.Log(GameManager.Instance._worldScore);
-                Destroy(this.gameObject);
+                WheelSizeAction(player);
             }
             else
             {
                 GameManager.Instance.IncreaseScore(0, 0, _score);
-                Debug.Log(GameManager.Instance._saturnScore);
-                Destroy(this.gameObject);
+                WheelSizeAction(player);
             }
         }
+    }
+
+    private void WheelSizeAction(PlayerController player)
+    {
+        _wheelSize = player._wheel.transform.localScale;
+        _wheelSize.z += 13f;
+        player._wheel.transform.localScale = _wheelSize;
+        Destroy(this.gameObject);
     }
 }
