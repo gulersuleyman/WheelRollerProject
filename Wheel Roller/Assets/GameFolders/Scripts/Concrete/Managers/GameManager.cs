@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IncreaseScore(int score1=0,int score2=0,int score3=0)
+    public void IncreasePlanetsScore(int score1=0,int score2=0,int score3=0)
     {
         _marsScore += score1;
         OnScoreChanged?.Invoke(_marsScore);

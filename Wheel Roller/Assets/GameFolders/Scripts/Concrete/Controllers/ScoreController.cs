@@ -17,17 +17,17 @@ public class ScoreController : MonoBehaviour
         {
             if(type == PlanetEnum.mars)
             {
-                GameManager.Instance.IncreaseScore(_score, 0, 0);
+                GameManager.Instance.IncreasePlanetsScore(_score, 0, 0);
                 WheelSizeAction(player);
             }
             else if(type == PlanetEnum.world)
             {
-                GameManager.Instance.IncreaseScore(0, _score, 0);
+                GameManager.Instance.IncreasePlanetsScore(0, _score, 0);
                 WheelSizeAction(player);
             }
             else
             {
-                GameManager.Instance.IncreaseScore(0, 0, _score);
+                GameManager.Instance.IncreasePlanetsScore(0, 0, _score);
                 WheelSizeAction(player);
             }
         }
