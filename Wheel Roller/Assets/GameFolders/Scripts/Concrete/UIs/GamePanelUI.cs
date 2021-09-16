@@ -8,6 +8,7 @@ public class GamePanelUI : MonoBehaviour
     public Text _marsScoreText;
     public Text _worldScoreText;
     public Text _saturnScoreText;
+    public Text _gameScore;
 
     private void Start()
     {

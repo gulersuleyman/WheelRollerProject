@@ -1197,6 +1197,7 @@ MonoBehaviour:
   _marsScoreText: {fileID: 555848209}
   _worldScoreText: {fileID: 1413566270}
   _saturnScoreText: {fileID: 1825450092}
+  _gameScore: {fileID: 416630735}
 --- !u!1 &1413566268
 GameObject:
   m_ObjectHideFlags: 0
