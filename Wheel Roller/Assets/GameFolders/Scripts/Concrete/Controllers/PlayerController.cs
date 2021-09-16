@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
 
     CharacterAnimation _characterAnimation;
     Rigidbody _rigidbody;
+    InputController _input;
 
     private void Awake()
     {
         _characterAnimation = GetComponent<CharacterAnimation>();
         _rigidbody = GetComponent<Rigidbody>();
+        _input = new InputController();
     }
 
     private void Update()
@@ -47,13 +49,13 @@ public class PlayerController : MonoBehaviour
     {
         if (_running)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (_input.FirstMouseClick)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0f, 10f));
                 _currentPositionOfFirstTouch = mousePosition.x;
                 _currentPositionOfPlayer = transform.position.x;
             }
-            if (Input.GetMouseButton(0))
+            if (_input.MouseClick)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0f, 10f));
                 float playerPosition = mousePosition.x - _currentPositionOfFirstTouch + _currentPositionOfPlayer;
