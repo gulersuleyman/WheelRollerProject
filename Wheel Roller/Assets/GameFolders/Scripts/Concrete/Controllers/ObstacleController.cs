@@ -32,3 +32,6 @@ public class ObstacleController : MonoBehaviour
         transform.position = startingPosition + offset;
     }
 }
+
+
+// merhaba
