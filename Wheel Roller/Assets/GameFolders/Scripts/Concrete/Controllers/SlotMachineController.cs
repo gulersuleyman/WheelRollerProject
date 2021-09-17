@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlotMachineController : MonoBehaviour
 {
-    //hepsi farkli ise 10x , iki benzer var ise 20x, hepsi ayni ise 100x
+    //all different 10x , two the same 20x, all the same 100x
     [SerializeField] GameObject[] _row1;
     [SerializeField] GameObject[] _row2;
     [SerializeField] GameObject[] _row3;
-
+    [SerializeField] GameObject _lastPanel;
 
     public PlayerController _player;
     public int _bonusIndex;
+    public Text _bonusIndexText;
+    public Text _coinText;
+
 
     int _activePlanetIndex=0;
     int _randomIndex;
@@ -20,8 +24,8 @@ public class SlotMachineController : MonoBehaviour
     bool _slotEnd = false;
     
 
-
     InputController _input;
+
 
     private void Awake()
     {
@@ -42,7 +46,6 @@ public class SlotMachineController : MonoBehaviour
     private void Update()
     {
         if (!_player._slotSceneActive) return;
-
 
 
         if(_input.FirstMouseClick && !_slotEnd)
@@ -69,21 +72,6 @@ public class SlotMachineController : MonoBehaviour
     }
 
 
-    private IEnumerator StartSlot()
-    {
-        for (int i = 0; i < 15; i++)
-        {
-            _randomIndex = Random.Range(0, 3);
-            _randomIndex2 = Random.Range(0, 3);
-            _randomIndex3 = Random.Range(0, 3); 
-            StartCoroutine(StartSlotSequence());
-            yield return new WaitForSeconds(0.5f);
-        }
-     
-        yield return null;
-    }
-
-
     private void ActiveFalse(GameObject[] row)
     {
         foreach (var planet in row)
@@ -91,5 +79,42 @@ public class SlotMachineController : MonoBehaviour
             planet.gameObject.SetActive(false);
         }
     }
+
+
+    private IEnumerator StartSlot()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            _randomIndex = Random.Range(0, 3);
+            _randomIndex2 = Random.Range(0, 3);
+            _randomIndex3 = Random.Range(0, 3);
+            if(i==14)
+            {
+                if (_randomIndex == _randomIndex2 && _randomIndex2 == _randomIndex3)
+                {
+                    _bonusIndex = 100;
+                }
+                else if (_randomIndex == _randomIndex2 || _randomIndex2 == _randomIndex3 || _randomIndex==_randomIndex3)
+                {
+                    _bonusIndex = 20;
+                }
+                else
+                {
+                    _bonusIndex = 10;
+                }
+                _bonusIndexText.text = _bonusIndex.ToString() + "X";
+                _coinText.text = ((GameManager.Instance._marsScore + GameManager.Instance._saturnScore + GameManager.Instance._worldScore) * _bonusIndex).ToString();
+                _lastPanel.gameObject.SetActive(true);
+                GameManager.Instance.IncreaseGameScore(_bonusIndex);
+            }
+            StartCoroutine(StartSlotSequence());
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        yield return null;
+    }
+
+
+    
 
 }
