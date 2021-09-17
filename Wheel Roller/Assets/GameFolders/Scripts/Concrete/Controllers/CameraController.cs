@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] GameObject _player;
+	public PlayerController _playerController;
 
     private Vector3 _offset;
 
@@ -14,6 +15,9 @@ public class CameraController : MonoBehaviour
 	}
 	void LateUpdate()
 	{
-		transform.position = new Vector3(transform.position.x, _player.transform.position.y + _offset.y, _player.transform.position.z + _offset.z);
+		if (!_playerController._cameraMovement)
+		{
+			transform.position = new Vector3(transform.position.x, _player.transform.position.y + _offset.y, _player.transform.position.z + _offset.z);
+		}
 	}
 }

@@ -29,6 +29,7 @@ public class CarpetObstacleController : MonoBehaviour
             player._wheel.gameObject.SetActive(false);
             player._moveSpeed = 0f;
             player._characterAnimation.FallingAnimation(true);
+            player._failPanel.gameObject.SetActive(true);
         }
     }
 }

@@ -8,13 +8,13 @@ public class PlayerController : MonoBehaviour
 {
     
     [SerializeField] float _rotationSpeed = 5f;
-    [SerializeField] GameObject _failPanel;
 
 
+    public GameObject _failPanel;
     public float _moveSpeed = 5f;
     public GameObject _wheel;
-
-
+    public bool _cameraMovement = false;
+    public bool _slotSceneActive = false;
 
     bool _running;
     float _currentPositionOfFirstTouch;
@@ -66,7 +66,12 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.CompareTag("Slot"))
         {
-            //Slot kaldi
+            Camera.main.transform.rotation = Quaternion.Euler(0, 90, 0);
+            Camera.main.transform.position = new Vector3(29.85f, 7.25f, 42.7f);
+            _moveSpeed = 0f;
+            _cameraMovement = true;
+            _slotSceneActive = true;
+
         }
     }
 

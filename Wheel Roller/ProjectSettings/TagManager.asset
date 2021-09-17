@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Obstacle
   - Slot
+  - Mars
+  - Saturn
+  - World
   layers:
   - Default
   - TransparentFX
