@@ -6,7 +6,8 @@ public class CarpetObstacleController : MonoBehaviour
 {
     Vector3 _wheelSize;
     float _downSizeIndex=15f;
-  
+
+    
     private void OnTriggerEnter(Collider collision)
     {
         PlayerController player = collision.GetComponent<PlayerController>();
@@ -23,5 +24,11 @@ public class CarpetObstacleController : MonoBehaviour
         _wheelSize = player._wheel.transform.localScale;
         _wheelSize.z -= _downSizeIndex;
         player._wheel.transform.localScale = _wheelSize;
+        if(_wheelSize.z <= 25f)
+        {
+            player._wheel.gameObject.SetActive(false);
+            player._moveSpeed = 0f;
+            player._characterAnimation.FallingAnimation(true);
+        }
     }
 }

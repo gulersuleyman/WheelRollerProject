@@ -6,24 +6,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float _moveSpeed = 5f;
+    
     [SerializeField] float _rotationSpeed = 5f;
     [SerializeField] GameObject _failPanel;
+
+
+    public float _moveSpeed = 5f;
     public GameObject _wheel;
+
+
 
     bool _running;
     float _currentPositionOfFirstTouch;
     float _currentPositionOfPlayer;
 
-    CharacterAnimation _characterAnimation;
+    public CharacterAnimation _characterAnimation;
+
+
     Rigidbody _rigidbody;
     InputController _input;
+   
 
     private void Awake()
     {
         _characterAnimation = GetComponent<CharacterAnimation>();
         _rigidbody = GetComponent<Rigidbody>();
         _input = new InputController();
+
     }
 
     private void Update()
@@ -54,6 +63,10 @@ public class PlayerController : MonoBehaviour
             _wheel.gameObject.SetActive(false);
             _characterAnimation.FallingAnimation(true);
             _failPanel.gameObject.SetActive(true);
+        }
+        if (collision.CompareTag("Slot"))
+        {
+            //Slot kaldi
         }
     }
 
