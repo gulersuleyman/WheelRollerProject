@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarpetObstacleController : MonoBehaviour
 {
     Vector3 _wheelSize;
-    float _downSizeIndex=8f;
+    float _downSizeIndex=15f;
   
     private void OnTriggerEnter(Collider collision)
     {

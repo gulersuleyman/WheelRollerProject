@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _rotationSpeed = 5f;
+    [SerializeField] GameObject _failPanel;
     public GameObject _wheel;
 
     bool _running;
@@ -43,6 +44,17 @@ public class PlayerController : MonoBehaviour
             _wheel.transform.Rotate(0,0, -1 * _rotationSpeed * Time.deltaTime);
         }
         
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.CompareTag("Obstacle"))
+        {
+            _moveSpeed = 0f;
+            _wheel.gameObject.SetActive(false);
+            _characterAnimation.FallingAnimation(true);
+            _failPanel.gameObject.SetActive(true);
+        }
     }
 
     private void DragMouse()
