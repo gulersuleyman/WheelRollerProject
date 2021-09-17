@@ -20,6 +20,7 @@ public class SlotMachineController : MonoBehaviour
     bool _slotEnd = false;
     
 
+
     InputController _input;
 
     private void Awake()
@@ -76,9 +77,9 @@ public class SlotMachineController : MonoBehaviour
             _randomIndex2 = Random.Range(0, 3);
             _randomIndex3 = Random.Range(0, 3); 
             StartCoroutine(StartSlotSequence());
-
             yield return new WaitForSeconds(0.5f);
         }
+     
         yield return null;
     }
 
