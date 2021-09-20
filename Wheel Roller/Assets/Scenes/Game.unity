@@ -2061,8 +2061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 50
-  _explosionParticle: {fileID: 955244374}
   _settingPanel: {fileID: 511023376}
+  _explosionParticle: {fileID: 955244374}
   _failPanel: {fileID: 1938019178}
   _moveSpeed: 200
   _wheel: {fileID: 919132148521563874}

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DebugMenuManager : MonoBehaviour
 {
-   
+    public static DebugMenuManager Instance { get; private set; }
 
 
     [SerializeField] Slider _cameraSlider;
@@ -25,8 +25,8 @@ public class DebugMenuManager : MonoBehaviour
 
     private void Awake()
     {
-
-        DontDestroyOnLoad(this.gameObject);
+        SingletonThisGameObject();
+       
        _obstacleSlider.value= PlayerPrefs.GetFloat("obstacleNumber", _obstacleNumber);
        _fieldOfView = PlayerPrefs.GetFloat("cameraDistance", _cameraDistance);
        _playerController._moveSpeed = PlayerPrefs.GetFloat("moveSpeed", _moveSpeedIndex);
@@ -36,6 +36,18 @@ public class DebugMenuManager : MonoBehaviour
     private void Update()
     {
         Camera.main.fieldOfView = _fieldOfView;
+    }
+    public void SingletonThisGameObject()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void SettingButtonClicked()

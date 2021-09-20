@@ -8,10 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     
     [SerializeField] float _rotationSpeed = 5f;
-    [SerializeField] ParticleSystem _explosionParticle;
     [SerializeField] GameObject _settingPanel;
 
-
+    public ParticleSystem _explosionParticle;
     public GameObject _failPanel;
     public float _moveSpeed = 5f;
     public GameObject _wheel;
