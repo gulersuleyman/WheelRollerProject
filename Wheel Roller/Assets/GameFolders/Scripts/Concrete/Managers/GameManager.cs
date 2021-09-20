@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         SingletonThisGameObject();
     }
-    private void SingletonThisGameObject()
+    public void SingletonThisGameObject()
     {
         if (Instance == null)
         {
@@ -54,4 +54,6 @@ public class GameManager : MonoBehaviour
         _gameScore += (_marsScore + _saturnScore + _worldScore) * bonusIndex;
         OnGameScoreChanged?.Invoke(_gameScore);
     }
+
+   
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarpetObstacleController : MonoBehaviour
 {
+    [SerializeField] ParticleSystem _explosionParticle;
+
     Vector3 _wheelSize;
     float _downSizeIndex=15f;
 
@@ -26,6 +28,7 @@ public class CarpetObstacleController : MonoBehaviour
         player._wheel.transform.localScale = _wheelSize;
         if(_wheelSize.z <= 25f)
         {
+            //_explosionParticle.Play();
             player._wheel.gameObject.SetActive(false);
             player._moveSpeed = 0f;
             player._characterAnimation.FallingAnimation(true);

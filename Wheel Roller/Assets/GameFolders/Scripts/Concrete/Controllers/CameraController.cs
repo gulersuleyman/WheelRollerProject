@@ -5,13 +5,16 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] GameObject _player;
+
 	public PlayerController _playerController;
 
-    private Vector3 _offset;
+    public Vector3 _offset;
+	
 
 	void Start()
 	{
-		_offset = transform.position - _player.transform.position;
+		
+		_offset = transform.position - _player.transform.position ;
 	}
 	void LateUpdate()
 	{

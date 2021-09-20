@@ -10,6 +10,9 @@ public class SlotMachineController : MonoBehaviour
     [SerializeField] GameObject[] _row2;
     [SerializeField] GameObject[] _row3;
     [SerializeField] GameObject _lastPanel;
+    [SerializeField] ParticleSystem _successParticle;
+    [SerializeField] GameObject _slotArrow;
+
 
     public PlayerController _player;
     public int _bonusIndex;
@@ -52,14 +55,14 @@ public class SlotMachineController : MonoBehaviour
         {
 
             StartCoroutine(StartSlot());
-
+            _slotArrow.gameObject.SetActive(false);
             _slotEnd = true;
             
         }
     }
 
 
-    private IEnumerator StartSlotSequence()
+    private void StartSlotSequence()
     {
         ActiveFalse(_row1);
         ActiveFalse(_row2);
@@ -68,7 +71,7 @@ public class SlotMachineController : MonoBehaviour
         _row1[_randomIndex].gameObject.SetActive(true);
         _row2[_randomIndex2].gameObject.SetActive(true);
         _row3[_randomIndex3].gameObject.SetActive(true);
-        yield return null;
+     
     }
 
 
@@ -102,12 +105,14 @@ public class SlotMachineController : MonoBehaviour
                 {
                     _bonusIndex = 10;
                 }
+                _successParticle.Play();
                 _bonusIndexText.text = _bonusIndex.ToString() + "X";
                 _coinText.text = ((GameManager.Instance._marsScore + GameManager.Instance._saturnScore + GameManager.Instance._worldScore) * _bonusIndex).ToString();
                 _lastPanel.gameObject.SetActive(true);
                 GameManager.Instance.IncreaseGameScore(_bonusIndex);
             }
-            StartCoroutine(StartSlotSequence());
+            
+            StartSlotSequence();
             yield return new WaitForSeconds(0.5f);
         }
         

@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     
     [SerializeField] float _rotationSpeed = 5f;
+    [SerializeField] ParticleSystem _explosionParticle;
+    [SerializeField] GameObject _settingPanel;
 
 
     public GameObject _failPanel;
@@ -15,11 +17,15 @@ public class PlayerController : MonoBehaviour
     public GameObject _wheel;
     public bool _cameraMovement = false;
     public bool _slotSceneActive = false;
+    public bool _running;
+   
 
-    bool _running;
+
     float _currentPositionOfFirstTouch;
     float _currentPositionOfPlayer;
 
+
+   
     public CharacterAnimation _characterAnimation;
 
 
@@ -29,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        
         _characterAnimation = GetComponent<CharacterAnimation>();
         _rigidbody = GetComponent<Rigidbody>();
         _input = new InputController();
@@ -39,6 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            _settingPanel.gameObject.SetActive(false);
             _running = true;
             _characterAnimation.RunningAnimation(_running);
         }
@@ -61,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             _moveSpeed = 0f;
             _wheel.gameObject.SetActive(false);
+            _explosionParticle.Play();
             _characterAnimation.FallingAnimation(true);
             _failPanel.gameObject.SetActive(true);
         }
@@ -94,4 +103,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
 }
