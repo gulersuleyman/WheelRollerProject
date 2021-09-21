@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem _explosionParticle;
     public GameObject _failPanel;
+    public GameObject _gamePanel;
     public float _moveSpeed;
     public GameObject _wheel;
     public bool _cameraMovement = false;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
             _explosionParticle.Play();
             _characterAnimation.FallingAnimation(true);
             _failPanel.gameObject.SetActive(true);
+            _gamePanel.SetActive(false);
         }
         if (collision.CompareTag("Slot"))
         {
