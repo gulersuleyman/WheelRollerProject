@@ -1,4 +1,4 @@
-Wheel Roller Prototype, joined effort with @gulersuleyman
+Wheel Roller Prototype, joined effort with @Scientist8
 There is a bug list at the end of this document!
 
 
@@ -29,3 +29,7 @@ Here is the list the bugs we've encountered and couldn't address in this version
 1- In debug menu you can change various parameters of the game, however if you try and change three times, movement speed
 and obstacle number parameters are not changing, they are losing their reference. However if you close and start the game again
 it will work normally, until three times again.
+2- Sometimes on the first go, "Retry" panel seems to get behind the "Game" panel. After your first fail when try to click on the
+retry button, it doesn't work. In order to solve this, first click on the Settings button that is on the upper left corner. After
+this step it works normally.
+
