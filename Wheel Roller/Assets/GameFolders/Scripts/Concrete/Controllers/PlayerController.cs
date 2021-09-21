@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
     [SerializeField] float _rotationSpeed = 5f;
     [SerializeField] GameObject _settingPanel;
 
     public ParticleSystem _explosionParticle;
     public GameObject _failPanel;
-    public float _moveSpeed = 5f;
+    public GameObject _gamePanel;
+    public float _moveSpeed;
     public GameObject _wheel;
     public bool _cameraMovement = false;
     public bool _slotSceneActive = false;
@@ -33,8 +33,7 @@ public class PlayerController : MonoBehaviour
    
 
     private void Awake()
-    {
-        
+    {        
         _characterAnimation = GetComponent<CharacterAnimation>();
         _rigidbody = GetComponent<Rigidbody>();
         _input = new InputController();
@@ -71,6 +70,7 @@ public class PlayerController : MonoBehaviour
             _explosionParticle.Play();
             _characterAnimation.FallingAnimation(true);
             _failPanel.gameObject.SetActive(true);
+            _gamePanel.SetActive(false);
         }
         if (collision.CompareTag("Slot"))
         {
