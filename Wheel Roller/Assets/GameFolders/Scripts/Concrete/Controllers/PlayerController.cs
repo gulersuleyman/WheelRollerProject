@@ -6,13 +6,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
     [SerializeField] float _rotationSpeed = 5f;
     [SerializeField] GameObject _settingPanel;
 
     public ParticleSystem _explosionParticle;
     public GameObject _failPanel;
-    public float _moveSpeed = 5f;
+    public float _moveSpeed;
     public GameObject _wheel;
     public bool _cameraMovement = false;
     public bool _slotSceneActive = false;
@@ -33,8 +32,7 @@ public class PlayerController : MonoBehaviour
    
 
     private void Awake()
-    {
-        
+    {        
         _characterAnimation = GetComponent<CharacterAnimation>();
         _rigidbody = GetComponent<Rigidbody>();
         _input = new InputController();

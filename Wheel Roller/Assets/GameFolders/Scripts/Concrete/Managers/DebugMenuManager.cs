@@ -11,6 +11,7 @@ public class DebugMenuManager : MonoBehaviour
     [SerializeField] Slider _cameraSlider;
     [SerializeField] Slider _moveSpeedSlider;
     [SerializeField] Slider _obstacleSlider;
+    [SerializeField] GameObject _debugMenuPanel;
 
 
    
@@ -26,6 +27,9 @@ public class DebugMenuManager : MonoBehaviour
     private void Awake()
     {
         SingletonThisGameObject();
+
+        _playerController = FindObjectOfType<PlayerController>();
+        _randomObstacleSpawner = FindObjectOfType<RandomObstacleSpawner>();
        
        _obstacleSlider.value= PlayerPrefs.GetFloat("obstacleNumber", _obstacleNumber);
        _fieldOfView = PlayerPrefs.GetFloat("cameraDistance", _cameraDistance);
@@ -53,13 +57,16 @@ public class DebugMenuManager : MonoBehaviour
     public void SettingButtonClicked()
     {
         Time.timeScale = 0f;
-       
+        _debugMenuPanel.SetActive(true);
+
     }
     public void DebugMenuExitButton()
     {
         Time.timeScale = 1f;
         CameraPosition();
         GameManager.Instance.lateOpen();
+
+        _debugMenuPanel.SetActive(false);
         
         
     }
