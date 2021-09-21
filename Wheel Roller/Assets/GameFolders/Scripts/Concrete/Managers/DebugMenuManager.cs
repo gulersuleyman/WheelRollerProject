@@ -19,10 +19,10 @@ public class DebugMenuManager : MonoBehaviour
     public RandomObstacleSpawner _randomObstacleSpawner;
 
 
-    float _fieldOfView;
-    float _cameraDistance;
-    float _moveSpeedIndex;
-    float _obstacleNumber;
+    float _fieldOfView = 80f;
+    float _cameraDistance = 80f;
+    float _moveSpeedIndex = 100f;
+    float _obstacleNumber = 6f;
 
     private void Awake()
     {
